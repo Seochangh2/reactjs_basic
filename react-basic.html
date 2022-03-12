@@ -13,7 +13,25 @@
   ></script>
   <script>
     const root = document.querySelector("#root");
-    const ki = React.createElement("span", { id: "chang-span" });
-    ReactDOM.render(ki, root);
+    const h3 = React.createElement(
+      "h3",
+      {
+        id: "title",
+        onMouseEnter: () => console.log("Mouse Entered"),
+      },
+      "Hello I'm span"
+    );
+    const btn = React.createElement(
+      "button",
+      {
+        onClick: () => console.log("clicked!"),
+        style: {
+          backgroundColor: "tomato",
+        },
+      },
+      "Click Me"
+    );
+    const container = React.createElement("div", null, [h3, btn]);
+    ReactDOM.render(container, root);
   </script>
 </html>
