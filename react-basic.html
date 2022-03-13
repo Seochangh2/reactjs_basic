@@ -19,10 +19,9 @@
       ReactDOM.render(<App />, root);
     }
     function App() {
-      let [counter, setCounter] = React.useState(0); //배열의 요소에 변수명을 붙혀줄수있다.
+      const [counter, setCounter] = React.useState(0); //배열의 요소에 변수명을 붙혀줄수있다.
       const btnClick = () => {
-        counter = counter + 1;
-        setCounter(counter);
+        setCounter(counter + 1);
       };
       return (
         <div>
