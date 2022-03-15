@@ -14,9 +14,10 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script type="text/babel">
-    function Btn({ text, fontSize = 30 }) {
+    function Btn({ text, fontSize = 30, onClick }) {
       return (
         <button
+          onClick={onClick}
           style={{
             backgroundColor: "green",
             color: "white",
@@ -29,6 +30,9 @@
           {text}
         </button>
       );
+    }
+    function onClick(event) {
+      alert("HELLO!");
     }
     Btn.prototype = {
       text: PropTypes.string.isRequired,
@@ -136,7 +140,7 @@
           <hr />
           {index === "0" ? <MinutesToHours /> : null}
           {index === "1" ? <KmToMile /> : null}
-          <Btn text="Hi!" />
+          <Btn text="Hi!" fontSize={20} onClick={onClick} />
         </div>
       );
     }
