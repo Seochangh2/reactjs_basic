@@ -12,8 +12,9 @@
     src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"
   ></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script type="text/babel">
-    function Btn(props) {
+    function Btn({ text, fontSize = 30 }) {
       return (
         <button
           style={{
@@ -22,12 +23,17 @@
             padding: "10px 20px",
             border: 0,
             borderRadius: 50,
+            fontSize,
           }}
         >
-          {props.text}
+          {text}
         </button>
       );
     }
+    Btn.prototype = {
+      text: PropTypes.string.isRequired,
+      fontSize: PropTypes.number,
+    };
     function MinutesToHours() {
       const [value, setValue] = React.useState(0);
       const [flipped, setflipped] = React.useState(false);
