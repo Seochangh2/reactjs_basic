@@ -15,7 +15,6 @@
   <script type="text/babel">
     function MinutesToHours() {
       const [value, setValue] = React.useState(0);
-      const [hours, setHours] = React.useState(0);
       const [flipped, setflipped] = React.useState(false);
       const onValueChange = (event) => {
         setValue(event.target.value);
@@ -57,10 +56,51 @@
       );
     }
     function KmToMile() {
-      return <h3>Hi</h3>;
+      const [value, setValue] = React.useState(0);
+      const [flipped, setflipped] = React.useState(false);
+      const onValueChange = (event) => {
+        setValue(event.target.value);
+      };
+      const reset = () => {
+        setValue(0);
+      };
+      const onFlip = () => {
+        reset();
+        setflipped((current) => !current);
+      };
+      return (
+        <div>
+          <div>
+            <label htmlFor="km">Km</label>
+            <input
+              value={
+                !flipped ? value : Math.round((value / 0.62137) * 100) / 100
+              }
+              id="km"
+              placeholder="Km"
+              type="number"
+              disabled={flipped}
+              onChange={onValueChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="mile">Mile</label>
+            <input
+              value={!flipped ? Math.round(value * 0.62137 * 100) / 100 : value}
+              id="mile"
+              placeholder="Mile"
+              type="number"
+              onChange={onValueChange}
+              disabled={!flipped}
+            />
+          </div>
+          <button onClick={reset}>Reset</button>
+          <button onClick={onFlip}>Flip</button>
+        </div>
+      );
     }
     function App() {
-      const [index, setIndex] = React.useState("0");
+      const [index, setIndex] = React.useState("xx");
       const onSelect = (event) => {
         setIndex(event.target.value);
       };
@@ -68,6 +108,8 @@
         <div>
           <h1>Super Converter</h1>
           <select value={index} onChange={onSelect}>
+            <option value="xx">Select !</option>
+
             <option value="0">Minutes & Hours</option>
             <option value="1">Km & Mile</option>
           </select>
